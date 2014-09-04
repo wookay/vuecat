@@ -29,11 +29,27 @@ route(app, GET | POST | PUT, "/") do req, res
   handleHTML(req, res)
 end
 
-route(app, GET, "/next/<id::Int>") do req, res
+app.state[:value] = 0
+
+route(app, GET, "/counter") do req, res
   res.headers["Content-Type"] = "application/json"
-  ret = string(req.state[:route_params]["id"] + 1)
-  println(ret)
-  ret
+  string(app.state[:value])
 end
+
+route(app, POST, "/counter") do req, res
+  res.headers["Content-Type"] = "application/json"
+  app.state[:value] = int(match(r"\d*", req.state[:data]["value"]).match)
+  string(app.state[:value])
+end
+
+route(app, GET, "/up") do req, res
+  res.headers["Content-Type"] = "application/json"
+  app.state[:value] += 1
+  string(app.state[:value])
+end
+
+#route(app, GET, "/next/<value::Int>") do req, res
+#  req.state[:route_params]["value"]
+#end
 
 start(app, 8000)

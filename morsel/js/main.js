@@ -8,10 +8,10 @@
         value: 0,
       },
       methods: {
-        next: function() {
+        getValue: function() {
           var _this = this
           var fun = function(callback) {
-            return $.ajax("/next/" + _this.value, {
+            return $.ajax("/counter", {
               type: 'GET',
               data: {
               },
@@ -22,13 +22,50 @@
             success: (function(_this) {
               return function(data) {
                 _this.value = data;
-                console.log(data);
+              };
+            })(this),
+          });
+        },
+        hundred: function() {
+          var _this = this
+          var fun = function(callback) {
+            return $.ajax("/counter", {
+              type: 'POST',
+              data: {
+                value: 100
+              },
+              dataType: 'json'
+            }).done(callback.success);
+          };
+          fun({
+            success: (function(_this) {
+              return function(data) {
+                _this.value = data;
+              };
+            })(this),
+          });
+        },
+        up: function() {
+          var _this = this
+          var fun = function(callback) {
+            return $.ajax("/up", {
+              type: 'GET',
+              data: {
+              },
+              dataType: 'json'
+            }).done(callback.success);
+          };
+          fun({
+            success: (function(_this) {
+              return function(data) {
+                _this.value = data;
               };
             })(this),
           });
         },
       },
     })
+    vm.getValue();
   };
 
   $(function() {
