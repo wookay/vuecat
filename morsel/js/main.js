@@ -63,9 +63,29 @@
             })(this),
           });
         },
+        julia: function(code) {
+          var _this = this
+          var fun = function(callback) {
+            return $.ajax("/julia", {
+              type: 'POST',
+              data: {
+                code: code
+              },
+              dataType: 'json'
+            }).done(callback.success);
+          };
+          fun({
+            success: (function(_this) {
+              return function(data) {
+                _this.value = data;
+              };
+            })(this),
+          });
+        },
       },
     })
     vm.getValue();
+    window.vm = vm;
   };
 
   $(function() {
