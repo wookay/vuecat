@@ -1,0 +1,18 @@
+<html>
+<head>
+  <script src="/static/js/jquery-2.1.1.min.js"></script>  
+  <script src="/static/js/vue.js"></script>  
+  <script src="/static/js/main.js"></script>  
+  <title>counter</title>
+</head>
+<body>
+
+<div id="main">
+  {{counter}}
+  {{value}}
+  <button v-on="click:up()">up</button>
+  <button v-on="click:hundred()">100</button>
+</div>
+
+</body>
+</html>
