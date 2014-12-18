@@ -4,12 +4,14 @@ from jinja2 import Template
 class Counter(Flask):
   jinja_options = Flask.jinja_options.copy()
   jinja_options.update(dict(
-      block_start_string='<%',
-      block_end_string='%>',
-      variable_start_string='$(',
-      variable_end_string=')',
-      comment_start_string='<#',
-      comment_end_string='#>',
+    block_start_string='<%',
+    block_end_string='%>',
+    variable_start_string='<%=',
+    variable_end_string='%>',
+    comment_start_string='<#',
+    comment_end_string='#>',
+	line_statement_prefix='%%',
+	line_comment_prefix="##",
   ))
  
 app = Counter(__name__)
@@ -31,8 +33,8 @@ def up():
   return jsonify(value=value)
 
 @app.route('/')
-def main():
-  return render_template('index.html')
+def welcome():
+  return render_template('welcome.html')
 
 if __name__ == '__main__':
   #app.run()

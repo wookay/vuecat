@@ -8,10 +8,25 @@
 <body>
 
 <div id="main">
+  <h3>Counter</h3>
   {{counter}}
   {{value}}
   <button v-on="click:up()">up</button>
   <button v-on="click:hundred()">100</button>
+</div>
+
+<br/>
+<br/>
+
+<div id="jinja2">
+  <h3>jinja2 templates</h3>
+  <pre>
+    <%= """<% for x in range(3) %>
+       <%= x %>
+    <% endfor %>""" %></pre>
+  <% for x in range(3) %>
+    <%= x %>
+  <% endfor %>
 </div>
 
 </body>
