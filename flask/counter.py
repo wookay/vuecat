@@ -10,8 +10,8 @@ class Counter(Flask):
     variable_end_string='%>',
     comment_start_string='<#',
     comment_end_string='#>',
-	line_statement_prefix='%%',
-	line_comment_prefix="##",
+    line_statement_prefix='%%',
+    line_comment_prefix="##",
   ))
  
 app = Counter(__name__)
